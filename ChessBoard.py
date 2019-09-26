@@ -139,36 +139,36 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
 
     def Rook_Predict(self, i, j):# 主要思路：针对四个方向进行判断，遇到棋子在判断敌我后返回坐标退出循环
         rook_predict = []
-        for a in range(i, 8): # 上
-            if a == i: continue
-            if not self.board[a][j]:
-                rook_predict.append([a, j])
-            elif self.board[a][j].camp != self.board[i][j].camp:
-                rook_predict.append([a, j])
+        for rook_N in range(i, 8): # 上
+            if rook_N == i: continue
+            if not self.board[rook_N][j]:
+                rook_predict.append([rook_N, j])
+            elif self.board[rook_N][j].camp != self.board[i][j].camp:
+                rook_predict.append([rook_N, j])
                 break
             else: break
-        for a in range(i, -1, -1): # 下
-            if a == i: continue
-            if not self.board[a][j]:
-                rook_predict.append([a, j])
-            elif self.board[a][j].camp != self.board[i][j].camp:
-                rook_predict.append([a, j])
+        for rook_S in range(i, -1, -1): # 下
+            if rook_S == i: continue
+            if not self.board[rook_S][j]:
+                rook_predict.append([rook_S, j])
+            elif self.board[rook_S][j].camp != self.board[i][j].camp:
+                rook_predict.append([rook_S, j])
                 break
             else: break
-        for b in range(j, 8): # 右
-            if b == j: continue
-            if not self.board[i][b]:
-                rook_predict.append([i, b])
-            elif self.board[i][b].camp != self.board[i][j].camp:
-                rook_predict.append([i, b])
+        for rook_E in range(j, 8): # 右
+            if rook_E == j: continue
+            if not self.board[i][rook_E]:
+                rook_predict.append([i, rook_E])
+            elif self.board[i][rook_E].camp != self.board[i][j].camp:
+                rook_predict.append([i, rook_E])
                 break
             else: break
-        for b in range(j, -1, -1): # 左
-            if b == j: continue
-            if not self.board[i][b]:
-                rook_predict.append([i, b])
-            elif self.board[i][b].camp != self.board[i][j].camp:
-                rook_predict.append([i, b])
+        for rook_W in range(j, -1, -1): # 左
+            if rook_W == j: continue
+            if not self.board[i][rook_W]:
+                rook_predict.append([i, rook_W])
+            elif self.board[i][rook_W].camp != self.board[i][j].camp:
+                rook_predict.append([i, rook_W])
                 break
             else: break
         return rook_predict
@@ -189,9 +189,9 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
 
     def Bishop_Predict(self, i, j): # 主要思路：四方斜进，同战车思路
         bishop_predict = []
-        for a in range(1,8):
-            x = j + a
-            y = i + a
+        for bishop_NE in range(1,8):
+            x = j + bishop_NE
+            y = i + bishop_NE
             if x < 0 or x > 7 or y < 0 or y > 7: break
             if j < 7 and i < 7: #右上
                 if not self.board[y][x]:bishop_predict.append([y,x])
@@ -199,9 +199,9 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
                     bishop_predict.append([y,x])
                     break
                 else: break
-        for a in range(1, 8):
-            x = j + a
-            y = i - a
+        for bishop_SE in range(1, 8):
+            x = j + bishop_SE
+            y = i - bishop_SE
             if x < 0 or x > 7 or y < 0 or y > 7: break
             if j < 7 and i > 0: #右下
                 if not self.board[y][x]:bishop_predict.append([y,x])
@@ -209,9 +209,9 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
                     bishop_predict.append([y,x])
                     break
                 else: break
-        for a in range(1, 8):
-            x = j - a
-            y = i + a
+        for bishop_NW in range(1, 8):
+            x = j - bishop_NW
+            y = i + bishop_NW
             if x < 0 or x > 7 or y < 0 or y > 7: break
             if j > 0 and i < 7: #左上
                 if not self.board[y][x]:bishop_predict.append([y,x])
@@ -219,9 +219,9 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
                     bishop_predict.append([y,x])
                     break
                 else: break
-        for a in range(1, 8):
-            x = j - a
-            y = i - a
+        for bishop_SW in range(1, 8):
+            x = j - bishop_SW
+            y = i - bishop_SW
             if x < 0 or x > 7 or y < 0 or y > 7: break
             if j > 0 and i > 0: #左下
                 if not self.board[y][x]:bishop_predict.append([y,x])
@@ -233,41 +233,41 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
 
     def Queen_Predict(self, i, j): # 主要思路：皇后 = 战车 + 主教
         queen_predict = []
-        for a in range(i, 8):
-            if a == i: continue
-            if not self.board[a][j]:
-                queen_predict.append([a, j])
-            elif self.board[a][j].camp != self.board[i][j].camp:
-                queen_predict.append([a, j])
+        for queen_N in range(i, 8):
+            if queen_N == i: continue
+            if not self.board[queen_N][j]:
+                queen_predict.append([queen_N, j])
+            elif self.board[queen_N][j].camp != self.board[i][j].camp:
+                queen_predict.append([queen_N, j])
                 break
             else: break
-        for a in range(i, -1, -1):
-            if a == i: continue
-            if not self.board[a][j]:
-                queen_predict.append([a, j])
-            elif self.board[a][j].camp != self.board[i][j].camp:
-                queen_predict.append([a, j])
+        for queen_S in range(i, -1, -1):
+            if queen_S == i: continue
+            if not self.board[queen_S][j]:
+                queen_predict.append([queen_S, j])
+            elif self.board[queen_S][j].camp != self.board[i][j].camp:
+                queen_predict.append([queen_S, j])
                 break
             else: break
-        for b in range(j, 8):
-            if b == j: continue
-            if not self.board[i][b]:
-                queen_predict.append([i, b])
-            elif self.board[i][b].camp != self.board[i][j].camp:
-                queen_predict.append([i, b])
+        for queen_E in range(j, 8):
+            if queen_E == j: continue
+            if not self.board[i][queen_E]:
+                queen_predict.append([i, queen_E])
+            elif self.board[i][queen_E].camp != self.board[i][j].camp:
+                queen_predict.append([i, queen_E])
                 break
             else: break
-        for b in range(j, -1, -1):
-            if b == j: continue
-            if not self.board[i][b]:
-                queen_predict.append([i, b])
-            elif self.board[i][b].camp != self.board[i][j].camp:
-                queen_predict.append([i, b])
+        for queen_W in range(j, -1, -1):
+            if queen_W == j: continue
+            if not self.board[i][queen_W]:
+                queen_predict.append([i, queen_W])
+            elif self.board[i][queen_W].camp != self.board[i][j].camp:
+                queen_predict.append([i, queen_W])
                 break
             else: break
-        for a in range(1, 8):
-            x = j + a
-            y = i + a
+        for queen_NE in range(1, 8):
+            x = j + queen_NE
+            y = i + queen_NE
             if x < 0 or x > 7 or y < 0 or y > 7: break
             if j < 7 and i < 7:  # 右上
                 if not self.board[y][x]:
@@ -276,9 +276,9 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
                     queen_predict.append([y, x])
                     break
                 else: break
-        for a in range(1, 8):
-            x = j + a
-            y = i - a
+        for queen_SE in range(1, 8):
+            x = j + queen_SE
+            y = i - queen_SE
             if x < 0 or x > 7 or y < 0 or y > 7: break
             if j < 7 and i > 0:  # 右下
                 if not self.board[y][x]:
@@ -287,9 +287,9 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
                     queen_predict.append([y, x])
                     break
                 else: break
-        for a in range(1, 8):
-            x = j - a
-            y = i + a
+        for queen_NW in range(1, 8):
+            x = j - queen_NW
+            y = i + queen_NW
             if x < 0 or x > 7 or y < 0 or y > 7: break
             if j > 0 and i < 7:  # 左上
                 if not self.board[y][x]:
@@ -298,9 +298,9 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
                     queen_predict.append([y, x])
                     break
                 else: break
-        for a in range(1, 8):
-            x = j - a
-            y = i - a
+        for queen_SW in range(1, 8):
+            x = j - queen_SW
+            y = i - queen_SW
             if x < 0 or x > 7 or y < 0 or y > 7: break
             if j > 0 and i > 0:  # 左下
                 if not self.board[y][x]:
@@ -452,7 +452,7 @@ class ChessBoard: # 以棋盘为参照，横坐标（等效直角坐标系中的
                 ChessBoard.king_position[self.board[dst[0]][dst[1]].camp] = [dst[0],dst[1]]
             return True
 
-    def CheckMate(self):
+    def CheckMate(self):# 将军
         for column in self.board:
             for element in column:
                 if element:
