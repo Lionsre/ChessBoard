@@ -511,7 +511,7 @@ if __name__ == "__main__":
                 else:print("{}无法应将，故此判输。".format(campstr[ChessBoard.chess_round]))
                 ChessBoard.chess_round = 1 - ChessBoard.chess_round
                 break
-        ChessBoard.chess_round = 1 - ChessBoard.chess_round
+            ChessBoard.chess_round = 1 - ChessBoard.chess_round
         if chessboard.isSurround:
             print("{}投降了！".format(campstr[1 - ChessBoard.chess_round]))
             break
